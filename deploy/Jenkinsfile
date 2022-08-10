@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build and publish') {
+            steps {
+              script {
+                withDockerRegistry(credentialsId: 'acln-registry', url: 'https://index.docker.io/v1/') {
+                    def customImage = docker.build("acln/cpq-front:1.1.${env.BUILD_ID}");
+                    customImage.push()
+                }
+              }
+            }
+        }
+    }
+}
