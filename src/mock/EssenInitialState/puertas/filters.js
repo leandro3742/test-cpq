@@ -1,236 +1,806 @@
-export const filters = {
-    filtro1: {
-        key: "filtro1",
-        question: "Tipo de uso",
-        answer: ["Multiuso", "Cortafuego"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro2: {
-        key: "filtro2",
-        question: "Tipo/Cantidad de hojas",
-        answer: ["1 Hoja", "2 Hojas", "2 Hojas Asimetricas", "Reversible", "Registro", "Corredera"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro3: {
-        key: "filtro3",
-        question: "Tipo de puerta cortafuego",
-        answer: ["El2-60 C5", "El2-90 C5", "El2-120 C5", "UL 90", "UL 120", "UL 180"],
-        dependency: [{ key: "filtro1", value: ["Cortafuego"] }],
-        enabled: false,
-    },
-    filtro4: {
-        key: "filtro4",
-        question: "Ancho HO",
-        answer: ["680", "780", "890", "980", "1010", "1080", "1180", "1280"],
-        dependency: [{ key: "filtro2", value: ["1 Hoja", "Corredera", "Reversible"] }],
-        enabled: false,
-    },
-    filtro5: {
-        key: "filtro5",
-        question: "Ancho HO",
-        answer: ["1225", "1325", "1425", "1525", "1635"],
-        dependency: [{ key: "filtro2", value: ["2 Hojas", "2 Hojas Asimetricas"] }],
-        enabled: false,
-    },
-    filtro6: {
-        key: "filtro6",
-        question: "Alto HO",
-        answer: ["2050", "2150"],
-        dependency: [],
-        enabled: true,
-    },
-    // filtro7: {
-    //     key: "filtro7",
-    //     question: "Cantidad de puertas",
-    //     answer: [],
-    //     dependency: [],
-    //     enabled: true,
-    // },
-    filtro8: {
-        key: "filtro8",
-        question: "Mano",
-        answer: ["Izquierda", "Derecha"],
-        dependency: [],
-        enabled: true,
-    },
-    //ACCESORIOS
-    filtro9: {
-        key: "filtro9",
-        question: "Medida",
-        answer: ["Pintada 255 mm", "Pintada 300 mm", "Pintada 300 x 300 mm", "Pintada 300 x 400 mm", "Pintada 400 x 600 mm", "Pintada 600 x 600 mm", "Pintada 200 x 600 mm", "Pintada 150 x 750 mm", "Inoxidable 225 mm", "Inoxidable 300 mm"],
-        dependency: [{ key: "filtro1", value: ["Multiuso"] }],
-        enabled: false,
-    },
-    filtro10: {
-        key: "filtro10",
-        question: "Medida",
-        answer: ["Pintada 255 mm", "Pintada 300 mm", "Pintada 300 x 300 mm", "Pintada 300 x 400 mm", "Pintada 400 x 600 mm", "Pintada 600 x 600 mm", "Pintada 200 x 600 mm", "Pintada 150 x 750 mm", "Inoxidable 225 mm", "Inoxidable 300 mm"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro3", value: ["El2-60 C5", "El2-90 C5"] },
-        ],
-        enabled: false,
-    },
-    filtro30: {
-        key: "filtro10",
-        question: "Medida",
-        answer: ["Pintada 200 x 600 mm", "Pintada 300 x 300 mm"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro3", value: ["UL 90", "UL 120", "UL 180"] },
-        ],
-        enabled: false,
-    },
-    filtro11: {
-        key: "filtro11",
-        question: "Mirillas",
-        answer: ["Parallamas", "Multiuso"],
-        dependency: [{ key: "filtro1", value: ["Multiuso"] }],
-        enabled: false,
-    },
-    filtro12: {
-        key: "filtro12",
-        question: "Mirillas",
-        answer: ["Ul"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro3", value: ["Ul 90", "UL 120", "UL 180"] },
-        ],
-        enabled: false,
-    },
-    filtro13: {
-        key: "filtro13",
-        question: "Mirillas",
-        answer: ["Cortafuego E60"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro3", value: ["El2-60 C5"] },
-            { key: "filtro10", value: ["255 mm", "300 mm", "300 x 400 mm", "400 x 600 mm", "600 x 600 mm", "200 x 600 mm", "150 x 750 mm", "225 mm", "300 mm"] },
-        ],
-        enabled: false,
-    },
-    filtro14: {
-        key: "filtro14",
-        question: "Mirillas",
-        answer: ["Cortafuego E90"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro3", value: ["El2-90 C5"] },
-            { key: "filtro10", value: ["255 mm", "300 mm", "300 x 400 mm", "400 x 600 mm", "600 x 600 mm", "200 x 600 mm", "150 x 750 mm", "225 mm", "300 mm"] },
-        ],
-        enabled: false,
-    },
-    filtro15: {
-        key: "filtro15",
-        question: "Tipo",
-        answer: ["Tipo universal", "Tipo touch"],
-        dependency: [{ key: "filtro1", value: ["Cortafuego"] }],
-        enabled: false,
-    },
-    filtro16: {
-        key: "filtro16",
-        question: "Sujeción",
-        answer: ["Embutir (estándar -1 hoja)", "Embutir (estándar -2 hojas)", "Sobreponer (estándar - 1 hoja)", "Sobreponer-sobreponer (2 hojas)"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro15", value: ["Tipo universal"] },
-        ],
-        enabled: false,
-    },
-    filtro17: {
-        key: "filtro17",
-        question: "Sujeción",
-        answer: ["Embutir (estándar -1 hoja)", "Embutir (gris/gris -1 hoja)", "Sobreponer (estándar - 1 hoja)"],
-        dependency: [
-            { key: "filtro1", value: ["Cortafuego"] },
-            { key: "filtro15", value: ["Tipo touch"] },
-        ],
-        enabled: false,
-    },
-    filtro18: {
-        key: "filtro18",
-        question: "Dispositivo",
-        answer: ["Electroimán"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro19: {
-        key: "filtro19",
-        question: "Tipo",
-        answer: ["De pared", "De suelo", "Soporte especial instalación"],
-        dependency: [{ key: "filtro18", value: ["Electroimán"] }],
-        enabled: true,
-    },
-    filtro20: {
-        key: "filtro20",
-        question: "Seleccionar selector de cierre",
-        answer: ["Selector de cierre"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro21: {
-        key: "filtro21",
-        question: "Tipo",
-        answer: ["Cerradura", "Pasacables"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro22: {
-        key: "filtro22",
-        question: "Subgrupo 9C",
-        answer: ["Pain CF60 - Zinc", "Cuadradillo partido"],
-        dependency: [{ key: "filtro21", value: ["Cerradura"] }],
-        enabled: false,
-    },
-    filtro23: {
-        key: "filtro23",
-        question: "Subgrupo 9C",
-        answer: ["Embutir", "Visto"],
-        dependency: [{ key: "filtro21", value: ["Pasacables"] }],
-        enabled: false,
-    },
-    filtro24: {
-        key: "filtro24",
-        question: "Subgrupo 9B",
-        answer: ["Cilindro estándar"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro25: {
-        key: "filtro25",
-        question: "Subgrupo 9C",
-        answer: ["Sistema TE5 (40+40)"],
-        dependency: [{ key: "filtro24", value: ["Cilindro estándar"] }],
-        enabled: false,
-    },
-    filtro26: {
-        key: "filtro26",
-        question: "Subgrupo 9B",
-        answer: ["Cierrapuertas"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro27: {
-        key: "filtro27",
-        question: "Subgrupo 9C",
-        answer: ["CT 1800", "DC 140"],
-        dependency: [{ key: "filtro26", value: ["Cierrapuertas"] }],
-        enabled: false,
-    },
-    filtro28: {
-        key: "filtro28",
-        question: "Subgrupo 9B",
-        answer: ["Manilla cortafuego"],
-        dependency: [],
-        enabled: true,
-    },
-    filtro29: {
-        key: "filtro29",
-        question: "Subgrupo 9C",
-        answer: ["Juego manilla INOX económica"],
-        dependency: [{ key: "filtro28", value: ["Manilla cortafuego"] }],
-        enabled: false,
-    },
-};
+export const filters =
+{
+  'Generar puerta': {
+    "Tipo": [
+      {
+        "value": "Multiuso",
+        "dependency": []
+      },
+      {
+        "value": "Cortafuego",
+        "dependency": []
+      }
+    ],
+    "Hojas": [
+      {
+        "value": "2H Batiente",
+        "dependency": []
+      },
+      {
+        "value": "1H Batiente",
+        "dependency": []
+      },
+      {
+        "value": "1H Corredera",
+        "dependency": []
+      }
+    ],
+    "Resistencia al fuego": [
+      {
+        "value": "El2-60 C5",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "El2-90 C5",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "El2-120 C5",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "UL 90",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "UL 120",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "UL 180",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      }
+    ],
+    "Medidas Hueco de obra HO* (Ancho)": [
+      {
+        "value": 680,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 780,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 890,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 980,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1010,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1080,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1180,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1280,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "1H Batiente",
+              " 1H Corredera"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1225,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "2H Batiente"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1325,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "2H Batiente"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1425,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "2H Batiente"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1525,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "2H Batiente"
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1625,
+        "dependency": [
+          {
+            "key": "Hojas",
+            "value": [
+              "2H Batiente"
+            ]
+          }
+        ]
+      }
+    ],
+    "Medidas Hueco de obra HO* (Alto)": [
+      {
+        "value": 2050,
+        "dependency": []
+      },
+      {
+        "value": 2150,
+        "dependency": []
+      }
+    ],
+    "Apertura": [
+      {
+        "value": "Derecha",
+        "dependency": []
+      },
+      {
+        "value": "Izquierda",
+        "dependency": []
+      },
+      {
+        "value": "Doble sentido",
+        "dependency": []
+      }
+    ]
+  },
+  'Accesorios': {
+    "Mirillas": [
+      {
+        "value": "Cortafuego E60 pintada 225 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 pintada 300 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 pintada 300 x 400 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 pintada  400 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 pintada  600 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 pintada 200 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 pintada 120 x 750 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 inoxidable 225 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E60 inoxidable 300 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-60 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada 225 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada  300 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada 300 x 400 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada  400 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada  600 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada 200 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 pintada 120 x 750 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 inoxidable 225 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Cortafuego E90 inoxidable 300 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "El2-90 C5"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 225 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 300 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 300 x 400 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 400 x 600 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 600 x 600 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 200 x 600 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas pintada 120 x 750 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas inoxidable 225 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Parallamas inoxidable 300 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "UL pintada 200 x 600 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "UL 90",
+              "UL 120",
+              "UL180"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "UL pintada 300 x 300 mm",
+        "dependency": [
+          {
+            "key": "Resistencia al fuego",
+            "value": [
+              "UL 90",
+              "UL 120",
+              "UL180"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 225 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 300 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 300 x 400 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 400 x 600 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 600 x 600 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 200 x 600 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso pintada 120 x 750 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso inoxidable 225 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Multiuso inoxidable 300 mm",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Multiuso"
+            ]
+          }
+        ]
+      }
+    ],
+    "Barras antipánico": [
+      {
+        "value": "Tipo universal de embutir (estándar – 1 hoja)",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Tipo universal de embutir (estándar – 2 hojas)",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Sobreponer (estándar - 1 hoja)",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      },
+      {
+        "value": "Sobreponer (estándar - 2 hojas)",
+        "dependency": [
+          {
+            "key": "Tipo",
+            "value": [
+              "Cortafuego"
+            ]
+          }
+        ]
+      }
+    ],
+    "Dispositivos electromagnéticos": [
+      {
+        "value": "Electroimán de pared",
+        "dependency": []
+      },
+      {
+        "value": "Electroimán de suelo ",
+        "dependency": []
+      },
+      {
+        "value": "Electroimán con soporte especial de instalación",
+        "dependency": []
+      }
+    ],
+    "Selector de cierre": [
+      {
+        "value": "Selector de cierre",
+        "dependency": []
+      }
+    ],
+    "Cerraduras cortafuego": [
+      {
+        "value": "Cerradura panic CF60 – Zinc",
+        "dependency": []
+      },
+      {
+        "value": "Cerradura cuadradillo partido",
+        "dependency": []
+      },
+      {
+        "value": "Pasacables de embutir",
+        "dependency": []
+      },
+      {
+        "value": "Pasacable visto",
+        "dependency": []
+      }
+    ],
+    "Cilindros": [
+      {
+        "value": "Cilindro estándar ",
+        "dependency": []
+      }
+    ],
+    "Cierrapuertas": [
+      {
+        "value": "Cierrapuertas CT 1800",
+        "dependency": []
+      },
+      {
+        "value": "DC 140",
+        "dependency": []
+      }
+    ],
+    "Manillas": [
+      {
+        "value": "Juego de manilla INOX económica",
+        "dependency": []
+      }
+    ]
+  },
+}

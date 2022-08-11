@@ -76,7 +76,6 @@ const Mirillas = (props) => {
                     }
                 } else {
                     for (let j in aux[i]) {
-                        console.log(aux[i][j]);
                         if (aux[i][j].dependency.length > 0) {
                             let entra2 = false;
                             _.each(aux[i][j].dependency, (dependency) => {
@@ -98,7 +97,6 @@ const Mirillas = (props) => {
     return (
         <div className="">
             <div className="row d-flex justify-content-center text-center">
-                {console.log(steps)}
                 {Object.keys(steps).length > 0 &&
                     _.map(steps, (value, key) => {
                         return (

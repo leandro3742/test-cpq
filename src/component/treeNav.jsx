@@ -15,30 +15,12 @@ const useStyles = makeStyles({
 
 export default function TreeNav(props) {
   const classes = useStyles();
-//   useEffect(() => {
-// }, [props.features]);
-console.log(props.features.listFeatures)
 return (
     <TreeView
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
     >
-    {/* {props.features.map((elem, iterator) => {
-        console.log(elem)
-        console.log(iterator) */}
-        {/* return( */}
-            {/* <TreeItem nodeId={iterator} label={elem.properties.name}> */}
-                {/* {props.components.map((elemComp, iterComp) => {
-                    if(elemComp.schema === elem.id)
-                    return
-                })} */}
-                {/* <TreeItem nodeId="2" label="Calendar" />
-                <TreeItem nodeId="3" label="Chrome" />
-                <TreeItem nodeId="4" label="Webstorm" /> */}
-            {/* </TreeItem> */}
-        {/* ) */}
-    {/* })} */}
       <TreeItem nodeId="1" label="Applications">
         <TreeItem nodeId="2" label="Calendar" />
         <TreeItem nodeId="3" label="Chrome" />

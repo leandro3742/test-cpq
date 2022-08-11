@@ -3,20 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { Navigation } from "../component/reactComponents/Navigation";
 import Puertas from "../component/essenPuertasComponents/Puertas";
-import { statePuertas } from "../mock/EssenInitialState/puertas/puertas";
 import { filters } from "../mock/EssenInitialState/puertas/filters";
 import CotizacionPuertas from "../component/essenPuertasComponents/CotizacionPuertas";
 import { ModalController } from "../component/widgets/modal";
 
 const dicNav = {
     "Generar puerta"(props) {
-        return <Puertas state={props.state.values} hard={props.hard} setHard={props.setHard} filtersData={props.filtersData} setFiltersData={props.setFiltersData} />;
+        return <Puertas hard={props.hard} setHard={props.setHard} filtersData={props.filtersData} setFiltersData={props.setFiltersData} />;
     },
     Accesorios(props) {
-        return <Puertas state={props.state.values} hard={props.hard} setHard={props.setHard} filtersData={props.filtersData} setFiltersData={props.setFiltersData} />;
+      console.log(props.filtersData)
+        return <Puertas hard={props.hard} setHard={props.setHard} filtersData={props.filtersData} setFiltersData={props.setFiltersData} />;
     },
     Cotizacion(props) {
-        return <CotizacionPuertas cart={props.cart} setCart={props.setCart} addTocart={props.addTocart} hard={props.hard} filtersData={props.filtersData} dispatch={props.dispatch} />;
+        return <CotizacionPuertas editComponent={props.editComponent} deleteComponent={props.deleteComponent} cart={props.cart} setCart={props.setCart} addTocart={props.addTocart} hard={props.hard} filtersData={props.filtersData} dispatch={props.dispatch} />;
     },
 };
 const EssenPuertas = () => {
@@ -30,12 +30,15 @@ const EssenPuertas = () => {
     const [filtersData, setFiltersData] = useState(filters);
     const [cart, setCart] = useState([]);
     const [index, setIndex] = useState(0);
+    const [positionCart, setPositionCart] = useState(0);
 
     useEffect(() => {
         let aux = {};
-        _.each(filters, (elem, key) => {
-            aux = Object.assign(aux, { [key]: "" });
-        });
+        _.each(filters, filter => {
+          _.each(filter, (elem, key) => {
+              aux = Object.assign(aux, { [key]: "" });
+          });
+        })
         setHard(aux);
     }, []);
 
@@ -50,25 +53,37 @@ const EssenPuertas = () => {
     }, [state.modal]);
 
     const addTocart = () => {
+        setPositionCart(positionCart + 1)
         setIndex(index + 1);
         let aux = {};
-        _.each(filters, (elem, key) => {
-            aux = Object.assign(aux, { [key]: "" });
-        });
+        _.each(filters, filter => {
+          _.each(filter, (elem, key) => {
+              aux = Object.assign(aux, { [key]: "" });
+          });
+        })
         setHard(aux);
         setNav("Generar puerta");
     };
-
+    const deleteComponent = (i) => {
+      setIndex(index - 1)
+      setCart(cart.filter((elem, it) => i !== it))  
+    }
+    const editComponent = (index) => {
+      setPositionCart(index)
+      setHard(cart[index])
+      // setHard(cart[index])
+    }
     useEffect(() => {
         let aux = cart;
-        aux[index] = hard;
+        aux[positionCart] = hard;
         setCart(aux);
-    }, [cart, hard, index]);
+    }, [hard]);
 
     return (
         <div className="row d-flex justify-content-center">
             <Navigation steps={["Generar puerta", "Accesorios", "Cotizacion"]} setNav={setNav} />
-            {nav && dicNav[nav]({ cart: cart, setCart: setCart, state: statePuertas[nav], hard: hard, setHard: setHard, filtersData: filtersData, setFiltersData: setFiltersData, dispatch: dispatch, addTocart: addTocart })}
+            
+            {nav && dicNav[nav]({ cart: cart, setCart: setCart, editComponent: editComponent, deleteComponent: deleteComponent, hard: hard, setHard: setHard, filtersData: filtersData[nav], setFiltersData: setFiltersData, dispatch: dispatch, addTocart: addTocart })}
             <ModalController isDoor={true} modal={state.modal} open={openModal} setOpen={setOpenModal} data={dataModal} dispatch={dispatch} cart={cart} />
         </div>
     );

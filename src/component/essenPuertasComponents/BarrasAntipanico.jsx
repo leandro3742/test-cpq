@@ -69,7 +69,6 @@ const BarrasAntipanico = (props) => {
                     }
                 } else {
                     for (let j in aux[i]) {
-                        console.log(aux[i][j]);
                         if (aux[i][j].dependency.length > 0) {
                             let entra2 = false;
                             _.each(aux[i][j].dependency, (dependency) => {

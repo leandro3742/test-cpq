@@ -87,7 +87,6 @@ export default function CompareCopmponent(props) {
     firstIndexCompare === components.length - 1 ? setFirstIndexCompare(0) : setFirstIndexCompare(firstIndexCompare + 1);
     secondIndexCompare === components.length - 1 ? setSecondIndexCompare(0) : setSecondIndexCompare(secondIndexCompare + 1);
   };
-  // console.log(components)
   return (
     <div className="d-flex justify-content-center">
       {window.screen.width > 426 && (
@@ -97,7 +96,6 @@ export default function CompareCopmponent(props) {
               <TableRow>
                 <StyledTableCell />
                 {_.map(components, (comp, key) => {
-                  console.log("entra ?")
                   return (
                     <StyledTableCell key={comp.value.name} className="row">
                       <div className="col-12 d-flex justify-content-end">
