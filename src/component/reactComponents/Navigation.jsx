@@ -14,7 +14,12 @@ export const Navigation = (props) => {
     }, [props.active]);
 
     useEffect(() => {
-        if (props.steps[value]) props.setNav(props.steps[value]);
+      if (props.steps[value]){
+        if(typeof props.steps[value] === 'object')
+          props.setNav(props.steps[value].key);
+        else
+          props.setNav(props.steps[value]);
+        }
     }, [props, value]);
 
     const handleChange = (event, newValue) => {
@@ -42,7 +47,7 @@ export const Navigation = (props) => {
                                         onClick={() => {
                                             props.setNav(elem.key);
                                         }}
-                                        label={elem.question}
+                                        label={elem.key}
                                     />
                                 );
                             } else if (props.showDisabled !== false)
@@ -54,7 +59,7 @@ export const Navigation = (props) => {
                                         onClick={() => {
                                             props.setNav(elem.key);
                                         }}
-                                        label={elem.question}
+                                        label={elem.key}
                                     />
                                 );
                         }

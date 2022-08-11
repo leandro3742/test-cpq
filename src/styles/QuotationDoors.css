@@ -1,8 +1,26 @@
 td, th {
-    border: 1px solid #dddddd;
-    padding: 8px;
+  border: 1px solid #dddddd;
+  padding: 8px;
 }
-  
+
 tr:nth-child(even) {
-    background-color: #dddddd;
+  background-color: #dddddd;
+}
+
+table{
+width: auto;
+}
+
+.divTable{
+width: auto;
+}
+@media (max-width: 600px) {
+table {
+  width: 100%;
+  overflow-x: scroll;  
+  font-size: 12px;
+}
+.divTable{
+  width: 90%;
+}
 }

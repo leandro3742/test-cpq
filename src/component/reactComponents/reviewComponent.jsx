@@ -4,17 +4,14 @@ import _ from "lodash";
 const ReviewComponent = (props) => {
 
     const showComponent = (elem, name) => {
-        console.log(name)
         let child = []
         let keys = (Object.keys(elem))
         if (keys.length >= 0) {
             if (keys[0] === "component" || keys[0] === "children") {
-                console.log(elem)
             }
             else {
                 for (let i in elem) {
                     child.push(elem[i].component.value.name)
-                    console.log(elem[i])
                 }
             }
         }

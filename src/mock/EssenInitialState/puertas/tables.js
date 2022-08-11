@@ -1,21 +1,54 @@
 export const tablePuertas = {
-    "Generar puerta": {
-        "Tipo de uso": ["filtro1"],
-        "Tipo / Cantidad de hojas": ["filtro2"],
-        "Tipo de puerta cortafuego": ["filtro3"],
-        "Ancho HO": ["filtro4", "filtro5"],
-        "Alto HO": ["filtro6"],
-        // "Cantidad de puertas": ["filtro6"],
-        Mano: ["filtro8"],
+  "Generar puerta": [
+    {
+      name: 'Tipo',
+      hardValue: 'Tipo'
     },
-    Accesorios: {
-        Mirillas: ["filtro9", "filtro11", "filtro12", "filtro13", "filtro14"],
-        "Barras antipánico": ["filtro15", "filtro16", "filtro17"],
-        "Dispositivos electromagnéticos": ["filtro18", "filtro19"],
-        "Selector de cierre": ["filtro20"],
-        "Cerraduras cortafuego": ["filtro21", "filtro22", "filtro23"],
-        Cilindros: ["filtro24", "filtro25"],
-        Cierrapuertas: ["filtro26", "filtro27"],
-        Manillas: ["filtro28", "filtro29"],
+    {
+      name: 'Hojas',
+      hardValue: 'Hojas'
+    }, 
+    {
+      name: 'Resistencia al fuego',
+      hardValue: 'Resistencia al fuego'
+    }, 
+    {
+      name:'Ancho HO',
+      hardValue: 'Medidas Hueco de obra HO* (Ancho)'
+    }, 
+    {
+      name: 'Alto HO',
+      hardValue: 'Medidas Hueco de obra HO* (Alto)'
     },
+    {
+      name: 'Apertura',
+      hardValue: 'Apertura'
+    }
+  ],
+  "Accesorios": [
+    {
+      name: 'Mirillas',
+      hardValue: 'Mirillas'
+    },
+    {
+      name: 'Barras antipánico',
+      hardValue: 'Barras antipánico'
+    }, 
+    {
+      name: 'Dispositivos electromagnéticos',
+      hardValue: 'Dispositivos electromagnéticos'
+    }, 
+    {
+      name:'Selector de cierre',
+      hardValue: 'Selector de cierre'
+    }, 
+    {
+      name: 'Cierrapuertas',
+      hardValue: 'Cierrapuertas'
+    },
+    {
+      name: 'Manillas',
+      hardValue: 'Manillas'
+    }
+  ],
 };
