@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                echo "CHANGE FILE"
-               sh "sed -i 's/<TAG>/${env.BUILD_ID}' ./k8s/deployment.yml"
+               sh "sed -i 's/<TAG>/${env.BUILD_ID}/' ./k8s/deployment.yml"
                echo "cat ./k8s/deployment.yml"
             //    sh "$HOME/bin/kubectl --kubeconfig $MY_KUBECONFIG apply -f ./k8s"
             }
