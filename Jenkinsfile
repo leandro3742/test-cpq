@@ -15,7 +15,7 @@ pipeline {
               }
             }
         }
-        stage('Build and publish') {
+        stage('K8S deployment') {
             agent { node { label 'master' } }
             steps {
               sh 'ls -a'
