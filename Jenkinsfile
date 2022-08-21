@@ -1,6 +1,6 @@
 pipeline {
-    agent docker {
-        image 'docker:dind'
+    agent { 
+        docker { image 'docker:dind' }
     }
     stages {
         stage('Build and publish') {
