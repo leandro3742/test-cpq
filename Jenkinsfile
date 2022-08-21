@@ -2,9 +2,7 @@ pipeline {
     agent none
     stages {
         stage('Build and publish') {
-            agent { 
-                docker { image 'docker:dind' }
-            }
+            agent { docker { image 'docker:dind' } }
             steps {
               script {
                 withDockerRegistry(credentialsId: 'ACLN-REGISTRY', url: 'https://index.docker.io/v1/') {
