@@ -21,7 +21,7 @@ spec:
         name:  cpq-front
     spec:
       containers:
-      - image:  ${CPQ-FRONT-IMAGE}
+      - image:  acln/cpq-front-v2:1.0.<TAG>
         name:  cpq-front
         resources:
           requests:
