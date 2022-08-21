@@ -1,10 +1,11 @@
 pipeline {
-    agent { 
-        docker { image 'docker:dind' }
-    }
     stages {
         stage('Build and publish') {
+            agent { 
+                docker { image 'docker:dind' }
+            }
             steps {
+         
               echo "Empezando a buildear y subir"
               script {
                 withDockerRegistry(credentialsId: 'ACLN-REGISTRY', url: 'https://index.docker.io/v1/') {
@@ -12,6 +13,12 @@ pipeline {
                     customImage.push()
                 }
               }
+            }
+        }
+        stage('Build and publish') {
+            agent { node { label 'master' } }
+            steps {
+              sh 'ls -a'
             }
         }
     }

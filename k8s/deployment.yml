@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  cpq-front
+  namespace: cpq
+  labels:
+    name:  cpq-front
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: cpq-front
+  template:
+    metadata:
+      labels:
+        name:  cpq-front
+    spec:
+      containers:
+      - image:  ${CPQ-FRONT-IMAGE}
+        name:  cpq-front
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "800M"
+          limits:
+            cpu: "200m"
+            memory: "1000M"
+        envFrom:
+          - secretRef:
+              name: cpq-front 
+        ports:
+        - containerPort:  3000
+          name:  cpq-front
+      imagePullSecrets:
+        - name: registry-credentials
