@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-        /*stage('Build and publish') {
+        stage('Build and publish') {
             agent { 
                 docker { image 'docker:dind' }
             }
@@ -15,7 +15,7 @@ pipeline {
                 }
               }
             }
-        }*/
+        }
         stage('K8S deployment') {
             agent { node { label 'master' } }
             environment {
