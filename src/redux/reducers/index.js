@@ -14,4 +14,5 @@ import hard from "./hard/reducer";
 import help from "./help/reducer";
 import pages from "./pages/reducer";
 import compare from "./compare/reducer";
-export default combineReducers({ features, components, views, cart, notifications, modal, steps, filters, fetchState, soft, filtersGroup, hard, help, pages, compare });
+import spinner from "./spinner/reducer"
+export default combineReducers({ features, components, views, cart, notifications, modal, spinner, steps, filters, fetchState, soft, filtersGroup, hard, help, pages, compare });

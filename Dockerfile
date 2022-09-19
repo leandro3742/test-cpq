@@ -5,4 +5,7 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install --no-optional
 COPY . ./
-CMD ["npm", "start"]
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]

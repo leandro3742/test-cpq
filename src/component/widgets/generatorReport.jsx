@@ -11,12 +11,16 @@ import Select from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 
 import _ from "lodash";
+import { setSpinner } from "../../redux/actions/spinner.js";
+import { useDispatch } from "react-redux";
 
 const GeneratorReport = (props) => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const [values, setValues] = React.useState({});
     const [text, setText] = React.useState({});
+    const dispatch = useDispatch()
+
     React.useEffect(() => {
         let aux = {};
         props.steps.forEach((elem) => {
@@ -97,6 +101,7 @@ const GeneratorReport = (props) => {
         };
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        dispatch(setSpinner(true))
         let data = await fetch(`${import.meta.env.VITE_BACKEND_SERVICE}/api/reports/quotation?type=${props.type}`, {
             method: "POST",
             headers: myHeaders,
@@ -104,6 +109,7 @@ const GeneratorReport = (props) => {
             redirect: "follow",
         });
         let blob = await data.blob()
+        dispatch(setSpinner(false))
         var url = window.URL.createObjectURL(blob);
         var a = document.createElement('a');
         a.href = url;
