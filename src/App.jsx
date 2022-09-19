@@ -15,9 +15,12 @@ import Home from "./views/Home";
 import Gtt from "./views/Gtt";
 import Essen from "./views/Essen";
 import EssenPuertas from "./views/EssenPuerta";
+import Spinner from "./component/widgets/spinner";
 
 function App() {
     const { store } = configureStore();
+
+    React.useEffect()
     return (
         <Provider store={store}>
             {/* <Layout > */}
@@ -29,6 +32,7 @@ function App() {
                 TransitionComponent={Slide}
                 maxSnack={3}
             >
+                <Spinner />
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Home />} />
