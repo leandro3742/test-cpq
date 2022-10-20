@@ -20,7 +20,7 @@ import Spinner from "./component/widgets/spinner";
 function App() {
     const { store } = configureStore();
 
-    React.useEffect()
+    // React.useEffect()
     return (
         <Provider store={store}>
             {/* <Layout > */}
